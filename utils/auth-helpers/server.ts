@@ -23,7 +23,7 @@ export async function signInWithPassword(formData: FormData) {
 
   if (error) {
     redirectPath = getErrorRedirect(
-      '/signin/password_signin',
+      '/sign-in/password_signin',
       'sign in failed',
       error.message
     );
