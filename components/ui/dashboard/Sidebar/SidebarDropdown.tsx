@@ -3,6 +3,8 @@ import { usePathname } from 'next/navigation';
 
 const SidebarDropdown = ({ items }: any) => {
   const pathname = usePathname();
+  const isActive = (route: string) => pathname.startsWith(route);
+
   return (
     <>
       <ul className="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
@@ -11,7 +13,7 @@ const SidebarDropdown = ({ items }: any) => {
             <Link
               href={item.route}
               className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
-                pathname === item.route ? 'text-white' : ''
+                isActive(item.route) ? 'text-white' : ''
               }`}
             >
               {item.label}

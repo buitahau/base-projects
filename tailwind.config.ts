@@ -39,8 +39,6 @@ const config = {
         bodydark: '#AEB7C0',
         bodydark1: '#DEE4EE',
         bodydark2: '#8A99AF',
-        // primary: "#3C50E0",
-        // secondary: "#80CAEE",
         stroke: '#E2E8F0',
         gray: '#EFF4FB',
         graydark: '#333A48',
@@ -72,11 +70,11 @@ const config = {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
+          DEFAULT: '#3C50E0',
           foreground: 'hsl(var(--primary-foreground))'
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
+          DEFAULT: '#80CAEE',
           foreground: 'hsl(var(--secondary-foreground))'
         },
         destructive: {

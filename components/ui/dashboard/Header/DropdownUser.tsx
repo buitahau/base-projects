@@ -1,10 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ClickOutsite from '../ClickOutsite';
 import Link from 'next/link';
 import Image from 'next/image';
+import { logout } from '@/api/logout';
+import { useRouter } from 'next/navigation';
+import { createClient } from '@/utils/supabase/client';
 
 const DropdownUser = () => {
+  const supabase = createClient();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const signOut = async (e: any) => {
+    e.preventDefault();
+    await logout();
+    router.push('/sign-in');
+  };
+
+  useEffect(() => {
+    const getLoggedInUser = async () => {
+      const {
+        data: { user }
+      } = await supabase.auth.getUser();
+      setEmail(user?.email || '');
+    };
+    getLoggedInUser();
+  }, []);
+
   return (
     <ClickOutsite onClick={() => setDropdownOpen(false)} className="relative">
       <Link
@@ -14,7 +36,7 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            Hau Bui
+            {email}
           </span>
           <span className="block text-xs">Developer</span>
         </span>
@@ -128,7 +150,10 @@ const DropdownUser = () => {
               </Link>
             </li>
           </ul>
-          <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+          <button
+            className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+            onClick={signOut}
+          >
             <svg
               className="fill-current"
               width="22"

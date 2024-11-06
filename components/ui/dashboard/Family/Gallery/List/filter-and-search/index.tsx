@@ -1,0 +1,3 @@
+/**
+ * Filter and search component
+ */

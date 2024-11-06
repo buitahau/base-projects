@@ -12,7 +12,6 @@ export const getNoteById = async (id: string): Promise<Note | null> => {
     console.log(error);
     throw error;
   }
-  console.log(data);
   return data ? data[0] : null;
 };
 
@@ -34,6 +33,5 @@ export const getAllNotes = async (): Promise<Note[]> => {
     console.log(error);
     throw error;
   }
-  console.log(data);
   return data;
 };

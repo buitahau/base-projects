@@ -1,13 +1,11 @@
 'use client';
 
 import useLocalStorage from '@/hooks/useLocalStorage';
-import { Children, useState } from 'react';
 import ClickOutsite from '../ClickOutsite';
 import Link from 'next/link';
 import Image from 'next/image';
 import menuGroups from './menuGroups';
 import SidebarItem from './SidebarItem';
-import { Item } from '@radix-ui/react-dropdown-menu';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -32,7 +30,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               width={176}
               height={32}
               src={'/images/logo/base-logo.png'}
-              // src="https://d16p9wqafd3nf8.cloudfront.net/images/logo/base-logo.png"
               alt="Logo"
               priority
             />
