@@ -9,6 +9,8 @@ interface GalleryContextType {
   changePage: (page: number) => void;
   pageNumber: number;
   setFilter: (showInSlider: boolean, showInGallery: boolean) => void;
+  selectedImageIds: string[];
+  setSelectedImageIds: (images: string[]) => void;
 }
 
 const GalleryContext = createContext<GalleryContextType>({
@@ -18,7 +20,9 @@ const GalleryContext = createContext<GalleryContextType>({
   total: 0,
   changePage: (page: number) => {},
   pageNumber: 0,
-  setFilter: (showInSlider: boolean, showInGallery: boolean) => {}
+  setFilter: (showInSlider: boolean, showInGallery: boolean) => {},
+  selectedImageIds: [],
+  setSelectedImageIds: (images: string[]) => {}
 });
 
 export default GalleryContext;

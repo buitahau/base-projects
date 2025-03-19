@@ -27,6 +27,13 @@ export default function FilterImage() {
     setIsOpen(false);
   };
 
+  const resetFilter = () => {
+    setShowInSlider(false);
+    setShowInGallery(false);
+    setFilter(false, false);
+    setIsOpen(false);
+  };
+
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
@@ -70,28 +77,34 @@ export default function FilterImage() {
               <div>
                 <div className="flex flex-col space-y-3">
                   <div className="flex items-center space-x-2">
-                    <input 
-                      type="checkbox" 
-                      name="showInSlider" 
+                    <input
+                      type="checkbox"
+                      name="showInSlider"
                       id="showInSlider"
                       className="w-4 h-4 rounded border-gray-500 text-blue-600 focus:ring-blue-500"
                       checked={showInSlider}
                       onChange={() => setShowInSlider(!showInSlider)}
                     />
-                    <label htmlFor="showInSlider" className="text-sm text-gray-300">
+                    <label
+                      htmlFor="showInSlider"
+                      className="text-sm text-gray-300"
+                    >
                       Show in slider
                     </label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <input 
-                      type="checkbox" 
-                      name="showInGallery" 
+                    <input
+                      type="checkbox"
+                      name="showInGallery"
                       id="showInGallery"
                       className="w-4 h-4 rounded border-gray-500 text-blue-600 focus:ring-blue-500"
                       checked={showInGallery}
                       onChange={() => setShowInGallery(!showInGallery)}
                     />
-                    <label htmlFor="showInGallery" className="text-sm text-gray-300">
+                    <label
+                      htmlFor="showInGallery"
+                      className="text-sm text-gray-300"
+                    >
                       Show in gallery
                     </label>
                   </div>
@@ -100,12 +113,12 @@ export default function FilterImage() {
             </div>
 
             <div className="flex justify-between mt-6">
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-gray-300 hover:text-white transition"
+              <Button
+                onClick={() => resetFilter()}
+                className="bg-gray-600 hover:bg-gray-500 px-4 py-2 rounded-lg"
               >
-                Cancel
-              </button>
+                Reset
+              </Button>
               <Button
                 className="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg"
                 onClick={() => executeFilter()}

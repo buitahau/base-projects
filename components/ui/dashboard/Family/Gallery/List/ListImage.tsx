@@ -2,20 +2,23 @@ import { getImageUrl } from '@/api/image-api';
 import useGalleryContext from '@/hooks/image/useGalleryContext';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Pagination } from './Pagination';
 import { ImageType } from '@/types/image';
 
 const ListImage = ({ folder_id }: { folder_id: string }) => {
-  const { result, processSearch } = useGalleryContext();
-  const [selectedImages, setSelectedImages] = useState<ImageType[]>([]);
+  const { result, processSearch, selectedImageIds, setSelectedImageIds } =
+    useGalleryContext();
 
   const handleCheckboxChange = (image: ImageType) => {
-    setSelectedImages((prevState) =>
-      prevState.includes(image)
-        ? prevState.filter((img) => img.id !== image.id)
-        : [...prevState, image]
-    );
+    if (!image.id) return;
+
+    const imageId = image.id;
+    if (selectedImageIds.includes(imageId)) {
+      setSelectedImageIds(selectedImageIds.filter((img) => img !== imageId));
+    } else {
+      setSelectedImageIds([...selectedImageIds, imageId]);
+    }
   };
 
   useEffect(() => {
@@ -49,6 +52,7 @@ const ListImage = ({ folder_id }: { folder_id: string }) => {
                 <input
                   type="checkbox"
                   onChange={() => handleCheckboxChange(image)}
+                  checked={selectedImageIds.includes(image.id ?? '')}
                 />
               </td>
               <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">

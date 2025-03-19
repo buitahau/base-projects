@@ -8,6 +8,7 @@ const GalleryProvider = ({ children }: { children: React.ReactNode }) => {
   const [result, setResult] = useState<ImageType[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(0);
+  const [selectedImageIds, setSelectedImageIds] = useState<string[]>([]);
 
   const [search, setSearch] = useState<SearchImage>({
     name: '',
@@ -40,7 +41,11 @@ const GalleryProvider = ({ children }: { children: React.ReactNode }) => {
 
   const setFilter = (showInSlider: boolean, showInGallery: boolean) => {
     setPageNumber(0);
-    setSearch({ ...search, show_in_slider: showInSlider, show_in_gallery: showInGallery });
+    setSearch({
+      ...search,
+      show_in_slider: showInSlider,
+      show_in_gallery: showInGallery
+    });
   };
 
   const changePage = (pageNumber: number) => {
@@ -60,7 +65,9 @@ const GalleryProvider = ({ children }: { children: React.ReactNode }) => {
         total,
         changePage,
         pageNumber,
-        setFilter
+        setFilter,
+        selectedImageIds,
+        setSelectedImageIds
       }}
     >
       {children}
